@@ -127,6 +127,8 @@ def create_dataset(formlist, strokes_path, images_path, tokenizer, text_dict, he
         random.shuffle(shuffled_offline_samples)
         
         for i in range(len(samples)):
+            if(samples[i][:-4] not in text_dict):
+                continue
             dataset.append((
                 parse_stroke_xml(path + '/' + samples[i]),
                 tokenizer.encode(text_dict[samples[i][:-4]]),
