@@ -2,3 +2,5 @@ data/*.p
 data/lineImages-all
 data/lineStrokes-all
 data/ascii-all
+__pycache__/
+ipynb_checkpoints/
