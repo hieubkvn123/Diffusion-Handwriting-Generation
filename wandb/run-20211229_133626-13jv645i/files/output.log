@@ -1,0 +1,26 @@
+
+Iteration 1000, Loss 1.727525, Time 162s
+Iteration 2000, Loss 0.565335, Time 315s
+Iteration 3000, Loss 0.475147, Time 470s
+Iteration 4000, Loss 0.443732, Time 624s
+Iteration 5000, Loss 0.412709, Time 779s
+Iteration 6000, Loss 0.383775, Time 935s
+Iteration 7000, Loss 0.365992, Time 1092s
+Iteration 8000, Loss 0.353581, Time 1248s
+Iteration 9000, Loss 0.343283, Time 1405s
+Traceback (most recent call last):
+  File "train.py", line 109, in <module>
+    main()
+  File "train.py", line 106, in main
+    train(dataset, NUM_STEPS, model, optimizer, alpha_set, PRINT_EVERY, SAVE_EVERY)
+  File "train.py", line 46, in train
+    save_path = ckpt_path + './weights/model_step%d.h5' % (optimizer.iterations+1)
+NameError: name 'ckpt_path' is not defined
+Traceback (most recent call last):
+  File "train.py", line 109, in <module>
+    main()
+  File "train.py", line 106, in main
+    train(dataset, NUM_STEPS, model, optimizer, alpha_set, PRINT_EVERY, SAVE_EVERY)
+  File "train.py", line 46, in train
+    save_path = ckpt_path + './weights/model_step%d.h5' % (optimizer.iterations+1)
+NameError: name 'ckpt_path' is not defined
