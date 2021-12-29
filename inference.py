@@ -17,7 +17,7 @@ def main():
     parser.add_argument('--diffmode', help="what kind of y_t-1 prediction to use, use 'standard' for  \
                                             Eq 9 in paper, will default to prediction in Eq 12", default='new', type=str)
     parser.add_argument('--show', help="whether to show the sample (popup from matplotlib)", default=False, type=bool)
-    parser.add_argument('--weights', help='the path of the loaded weights', default='./weights/model_weights.h5', type=str)
+    parser.add_argument('--weights', help='the path of the loaded weights', default='./pretrained/model_weights.h5', type=str)
     parser.add_argument('--seqlen', help='number of timesteps in generated sequence, default 16 * length of text', default=None, type=int)
     parser.add_argument('--num_attlayers', help='number of attentional layers at lowest resolution, \
                                                  only change this if loaded model was trained with that hyperparameter', default=2, type=int)

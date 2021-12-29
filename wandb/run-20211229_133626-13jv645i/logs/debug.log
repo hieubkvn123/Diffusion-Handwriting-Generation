@@ -1,0 +1,22 @@
+2021-12-29 13:36:26,674 INFO    MainThread:38426 [wandb_setup.py:_flush():71] setting env: {}
+2021-12-29 13:36:26,674 INFO    MainThread:38426 [wandb_setup.py:_flush():71] setting login settings: {}
+2021-12-29 13:36:26,674 INFO    MainThread:38426 [wandb_init.py:_log_setup():371] Logging user logs to /home/minhhieu/Desktop/Hieu/Diffusion-Handwriting-Generation/wandb/run-20211229_133626-13jv645i/logs/debug.log
+2021-12-29 13:36:26,674 INFO    MainThread:38426 [wandb_init.py:_log_setup():372] Logging internal logs to /home/minhhieu/Desktop/Hieu/Diffusion-Handwriting-Generation/wandb/run-20211229_133626-13jv645i/logs/debug-internal.log
+2021-12-29 13:36:26,674 INFO    MainThread:38426 [wandb_init.py:init():404] calling init triggers
+2021-12-29 13:36:26,674 INFO    MainThread:38426 [wandb_init.py:init():409] wandb.init called with sweep_config: {}
+config: {}
+2021-12-29 13:36:26,675 INFO    MainThread:38426 [wandb_init.py:init():460] starting backend
+2021-12-29 13:36:26,675 INFO    MainThread:38426 [backend.py:_multiprocessing_setup():99] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2021-12-29 13:36:26,778 INFO    MainThread:38426 [backend.py:ensure_launched():216] starting backend process...
+2021-12-29 13:36:26,808 INFO    MainThread:38426 [backend.py:ensure_launched():221] started backend process with pid: 38669
+2021-12-29 13:36:26,809 INFO    MainThread:38426 [wandb_init.py:init():469] backend started and connected
+2021-12-29 13:36:26,812 INFO    MainThread:38426 [wandb_init.py:init():533] updated telemetry
+2021-12-29 13:36:26,863 INFO    MainThread:38426 [wandb_init.py:init():563] communicating current version
+2021-12-29 13:36:27,503 INFO    MainThread:38426 [wandb_init.py:init():568] got version response 
+2021-12-29 13:36:27,503 INFO    MainThread:38426 [wandb_init.py:init():578] communicating run to backend with 30 second timeout
+2021-12-29 13:36:28,007 INFO    MainThread:38426 [wandb_init.py:init():606] starting run threads in backend
+2021-12-29 13:36:28,810 INFO    MainThread:38426 [wandb_run.py:_console_start():1810] atexit reg
+2021-12-29 13:36:28,810 INFO    MainThread:38426 [wandb_run.py:_redirect():1684] redirect: SettingsConsole.REDIRECT
+2021-12-29 13:36:28,811 INFO    MainThread:38426 [wandb_run.py:_redirect():1689] Redirecting console.
+2021-12-29 13:36:28,811 INFO    MainThread:38426 [wandb_run.py:_redirect():1745] Redirects installed.
+2021-12-29 13:36:28,811 INFO    MainThread:38426 [wandb_init.py:init():633] run started, returning control to user process

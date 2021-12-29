@@ -5,6 +5,7 @@ import utils
 import nn
 import time
 import argparse
+import wandb
 
 @tf.function
 def train_step(x, pen_lifts, text, style_vectors, glob_args):
@@ -21,17 +22,22 @@ def train_step(x, pen_lifts, text, style_vectors, glob_args):
     gradients = tape.gradient(loss, model.trainable_variables)  
     optimizer.apply_gradients(zip(gradients, model.trainable_variables))
     train_loss(loss)
+
     return score, att
 
 def train(dataset, iterations, model, optimizer, alpha_set, print_every=1000, save_every=10000):
     s = time.time()
     bce = tf.keras.losses.BinaryCrossentropy(from_logits=False)
     train_loss = tf.keras.metrics.Mean()
+    
+
     for count, (strokes, text, style_vectors) in enumerate(dataset.repeat(5000)):
         strokes, pen_lifts = strokes[:, :, :2], strokes[:, :, 2:]
         glob_args = model, alpha_set, bce, train_loss, optimizer
         model_out, att = train_step(strokes, pen_lifts, text, style_vectors, glob_args)
-        
+    
+        wandb.log({'loss' : train_loss.result()})
+
         if optimizer.iterations%print_every==0:
             print("Iteration %d, Loss %f, Time %ds" % (optimizer.iterations, train_loss.result(), time.time()-s))
             train_loss.reset_states()
@@ -88,6 +94,14 @@ def main():
     path = './data/train_strokes.p'
     strokes, texts, samples = utils.preprocess_data(path, MAX_TEXT_LEN, MAX_SEQ_LEN, WIDTH, 96)
     dataset = utils.create_dataset(strokes, texts, samples, style_extractor, BATCH_SIZE, BUFFER_SIZE)
+
+    # Initialize wandb 
+    wandb.init(project="HandWrittingGenerationDiffusion", entity="hieubkvn123")
+    wandb.config = {
+      "learning_rate": 0.001,
+      "epochs": NUM_STEPS,
+      "batch_size": BATCH_SIZE
+    }
 
     train(dataset, NUM_STEPS, model, optimizer, alpha_set, PRINT_EVERY, SAVE_EVERY)
 
