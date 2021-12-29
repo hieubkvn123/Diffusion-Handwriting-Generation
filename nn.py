@@ -35,7 +35,7 @@ def ff_network(C, dff=768, act_before=True):
 def loss_fn(eps, score_pred, pl, pl_pred, abar, bce):
     score_loss = tf.reduce_mean(tf.reduce_sum(tf.square(eps - score_pred), axis=-1)) 
     pl_loss = tf.reduce_mean(bce(pl, pl_pred) * tf.squeeze(abar, -1))
-    return score_loss + pl_loss
+    return score_loss + pl_loss, score_loss, pl_loss
     
 def scaled_dp_attn(q, k, v, mask):
     qk = tf.matmul(q, k, transpose_b=True) #batch_size, d_model, seq_len_q, seq_len_k

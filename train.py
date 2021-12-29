@@ -17,33 +17,34 @@ def train_step(x, pen_lifts, text, style_vectors, glob_args):
     
     with tf.GradientTape() as tape:
         score, pl_pred, att = model(x_perturbed, text, tf.sqrt(alphas), style_vectors, training=True)
-        loss = nn.loss_fn(eps, score, pen_lifts, pl_pred, alphas, bce)
+        loss, score_loss, pl_loss = nn.loss_fn(eps, score, pen_lifts, pl_pred, alphas, bce)
         
     gradients = tape.gradient(loss, model.trainable_variables)  
     optimizer.apply_gradients(zip(gradients, model.trainable_variables))
     train_loss(loss)
 
-    return score, att
+    return score, att, score_loss, pl_loss
 
 def train(dataset, iterations, model, optimizer, alpha_set, print_every=1000, save_every=10000):
     s = time.time()
     bce = tf.keras.losses.BinaryCrossentropy(from_logits=False)
     train_loss = tf.keras.metrics.Mean()
+    ckpt_path = './'
     
 
     for count, (strokes, text, style_vectors) in enumerate(dataset.repeat(5000)):
         strokes, pen_lifts = strokes[:, :, :2], strokes[:, :, 2:]
         glob_args = model, alpha_set, bce, train_loss, optimizer
-        model_out, att = train_step(strokes, pen_lifts, text, style_vectors, glob_args)
+        model_out, att, score_loss, pl_loss = train_step(strokes, pen_lifts, text, style_vectors, glob_args)
     
-        wandb.log({'loss' : train_loss.result()})
+        wandb.log({'stroke_loss' : score_loss, 'pen_lift_loss' : pl_loss})
 
         if optimizer.iterations%print_every==0:
             print("Iteration %d, Loss %f, Time %ds" % (optimizer.iterations, train_loss.result(), time.time()-s))
             train_loss.reset_states()
 
         if (optimizer.iterations+1) % save_every==0:
-            save_path = ckpt_path + './weights/model_step%d.h5' % (optimizer.iterations+1)
+            save_path = ckpt_path + 'weights/model_step%d.h5' % (optimizer.iterations+1)
             model.save_weights(save_path)
             
         if optimizer.iterations > iterations:

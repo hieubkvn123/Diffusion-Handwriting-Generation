@@ -1,0 +1,27 @@
+{
+    "os": "Linux-5.11.0-43-generic-x86_64-with-glibc2.29",
+    "python": "3.8.10",
+    "heartbeatAt": "2021-12-29T14:15:07.331029",
+    "startedAt": "2021-12-29T14:15:05.349184",
+    "docker": null,
+    "gpu": "GeForce RTX 2080 Ti",
+    "gpu_count": 1,
+    "cpu_count": 16,
+    "cuda": null,
+    "args": [
+        "--save_every",
+        "100"
+    ],
+    "state": "running",
+    "program": "train.py",
+    "codePath": "train.py",
+    "git": {
+        "remote": "https://github.com/hieubkvn123/Diffusion-Handwriting-Generation",
+        "commit": "0f8de726f54e4fedad1387b705e05da12c2a27ba"
+    },
+    "email": "hieubkvn123@gmail.com",
+    "root": "/home/minhhieu/Desktop/Hieu/Diffusion-Handwriting-Generation",
+    "host": "minhhieu-Z490-GAMING-X",
+    "username": "minhhieu",
+    "executable": "/usr/bin/python3"
+}
