@@ -37,7 +37,7 @@ def train(dataset, iterations, model, optimizer, alpha_set, print_every=1000, sa
         glob_args = model, alpha_set, bce, train_loss, optimizer
         model_out, att, score_loss, pl_loss = train_step(strokes, pen_lifts, text, style_vectors, glob_args)
     
-        wandb.log({'stroke_loss' : score_loss, 'pen_lift_loss' : pl_loss})
+        wandb.log({'stroke_loss' : score_loss, 'pen_lift_loss' : pl_loss, 'total_loss' : train_loss.result()})
 
         if optimizer.iterations%print_every==0:
             print("Iteration %d, Loss %f, Time %ds" % (optimizer.iterations, train_loss.result(), time.time()-s))
