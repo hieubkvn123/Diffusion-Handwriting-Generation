@@ -1,4 +1,6 @@
 # Diffusion Models for Hand-writing generation
+Tensorflow implementation for [Diffusion Models for Hand-Writing Generation](https://arxiv.org/abs/2011.06704)
+
 ### 1. Download dataset
 First, download and extract the contents of the following files:
  - lineStrokes-all.tar.gz (Pen strokes in XML)
