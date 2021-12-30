@@ -1,1 +1,1 @@
-{"stroke_loss": 0.720008373260498, "pen_lift_loss": 0.1316709965467453, "total_loss": 1.9708000421524048, "_runtime": 132, "_timestamp": 1640787657, "_step": 782}
+{"stroke_loss": 0.20089705288410187, "pen_lift_loss": 0.02579883672297001, "total_loss": 0.22669589519500732, "_runtime": 9498, "_timestamp": 1640797023, "_step": 60000, "_wandb": {"runtime": 9498}}
