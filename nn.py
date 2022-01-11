@@ -223,6 +223,8 @@ class Text_Style_Encoder(Model):
         style = reshape_up(self.dropout(style), 5)
         style = self.affine1(self.layernorm(self.style_ffn(style)), sigma)
         text = self.emb(text)
+        print(text)
+        print(text.shape)
         text = self.affine2(self.layernorm(text), sigma)
         mha_out, _ = self.mha(text, style, style)
         text = self.affine3(self.layernorm(text + mha_out), sigma)
