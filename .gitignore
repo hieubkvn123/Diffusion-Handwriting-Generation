@@ -3,5 +3,7 @@ data/lineImages-all
 data/lineStrokes-all
 data/ascii-all
 __pycache__/
+__pycache__
+__pycache__/*
 ipynb_checkpoints/
 checkpoints/
