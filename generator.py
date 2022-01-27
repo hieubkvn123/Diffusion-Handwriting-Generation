@@ -3,6 +3,7 @@ import utils
 import preprocessing
 
 import os
+import tqdm
 import numpy as np
 import tensorflow as tf
 
@@ -63,6 +64,19 @@ class HandWritingGenerator:
                                     tokenizer=self.tokenizer, time_steps=timesteps, diffusion_mode=diffmode, 
                                     show_samples=show, path=output_path)
 
+    def run_batch_generation(self, textstrings, output_dir, diffmode='new', show=False, seqlen=None):
+        if(not os.path.exists(output_dir)):
+            print(f'[INFO] Creating output directory {output_dir} ... ')
+            os.mkdir(output_dir)
 
-gen = HandWritingGenerator('weights/model.h5', 'writers/writer-style-01.jpg')
-gen.run_single_generation("I hate my life", "sample")
+        with tqdm.tqdm(total=len(textstrings)) as pbar:
+            for i, textstring in enumerate(textstrings):
+                output_path = os.path.join(output_dir, f'sample_{i}')
+
+                self.run_single_generation(textstring, output_path, diffmode=diffmode,
+                        show=show, seqlen=seqlen)
+
+                pbar.update(1)
+
+# gen = HandWritingGenerator('weights/model.h5', 'writers/writer-style-01.jpg')
+# gen.run_batch_generation(["I hate", "my life"], "data/samples")
